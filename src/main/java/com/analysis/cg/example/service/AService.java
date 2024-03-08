@@ -15,5 +15,6 @@ public class AService {
     public void run() {
         log.info("this is A!");
         cService.run();
+        log.info("change one!");
     }
 }
