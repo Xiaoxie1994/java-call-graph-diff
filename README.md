@@ -1,4 +1,7 @@
 # JavaCallGraph
+[![Java support](https://img.shields.io/badge/Java-8+-green?logo=java&logoColor=white)](https://openjdk.java.net/)
+[![License](https://img.shields.io/badge/license-MIT-blue?logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
+
 > Java implementation of CallGraph.
 
 CG的Java实现方式。采用源码和字节码静态分析方式，提供静态调用关系图和分支变更影响分析能力。
