@@ -14,7 +14,8 @@ TBD
 - 生成静态CG  
 **核心方法**：com.analysis.cg.core.source.StaticAnalysisService.methodCallGraph
 <img src="picture/cg.png" width="500" height="500" alt="callGraph">
-- 变更影响CG(依赖静态CG)  
+
+- 变更影响CG(依赖静态CG)    
 **核心方法**：com.analysis.cg.core.source.StaticAnalysisService.codeChangeMethods
 ![img.png](picture/change_cg.png)
 
