@@ -9,9 +9,6 @@ CG的Java实现方式。采用源码和字节码静态分析方式，提供静�
 ## 实现思路
 ![img.png](picture/impl.png)
 
-## 工程结构
-TBD
-
 ## 测试方式
 测试入口：com.analysis.cg.core.StaticAnalysisServiceTest
 - 生成静态CG  
