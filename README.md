@@ -4,7 +4,7 @@
 
 > Java implementation of CallGraph.
 
-CG的Java实现方式。采用源码和字节码静态分析方式，提供静态调用关系图和分支变更影响面分析能力。
+CG的Java实现方式。采用源码静态分析方式，提供静态调用关系图生产和代码变更影响面分析能力。
 
 ## 实现思路
 ![img.png](picture/impl.png)
