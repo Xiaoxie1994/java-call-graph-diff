@@ -117,28 +117,33 @@ public class StaticAnalysisService {
             }
 
             // diff
-            PrinterConfiguration printerConfiguration = new DefaultPrinterConfiguration()
-                    .removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_COMMENTS))
-                    .removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_JAVADOC));
-            DefaultPrettyPrinter printer = new DefaultPrettyPrinter(printerConfiguration);
-            Set<String> changeMethods = Sets.newHashSet();
-            oldMethodDeclarations.forEach((s, methodDeclaration) -> {
-                MethodDeclaration newMethodDeclaration = newMethodDeclarations.get(s);
-                if (null == newMethodDeclaration) {
-                    changeMethods.add(s);
-                    return;
-                }
-                String oldMethodBodyStr = printer.print(methodDeclaration.getBody().get());
-                String newMethodBodyStr = printer.print(newMethodDeclaration.getBody().get());
-                if (!StringUtils.equals(oldMethodBodyStr, newMethodBodyStr)) {
-                    changeMethods.add(s);
-                }
-            });
-            return changeMethods;
+            return findChangeMethods(oldMethodDeclarations, newMethodDeclarations);
         } catch (Exception e) {
             log.error("CodeDomainService getBranchFileDiffInfo error, gitPath:{}", gitPath, e);
             return Collections.emptySet();
         }
+    }
+
+    private static Set<String> findChangeMethods(Map<String, MethodDeclaration> oldMethodDeclarations,
+                                                 Map<String, MethodDeclaration> newMethodDeclarations) {
+        PrinterConfiguration printerConfiguration = new DefaultPrinterConfiguration()
+                .removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_COMMENTS))
+                .removeOption(new DefaultConfigurationOption(DefaultPrinterConfiguration.ConfigOption.PRINT_JAVADOC));
+        DefaultPrettyPrinter printer = new DefaultPrettyPrinter(printerConfiguration);
+        Set<String> changeMethods = Sets.newHashSet();
+        oldMethodDeclarations.forEach((s, methodDeclaration) -> {
+            MethodDeclaration newMethodDeclaration = newMethodDeclarations.get(s);
+            if (null == newMethodDeclaration) {
+                changeMethods.add(s);
+                return;
+            }
+            String oldMethodBodyStr = printer.print(methodDeclaration.getBody().get());
+            String newMethodBodyStr = printer.print(newMethodDeclaration.getBody().get());
+            if (!StringUtils.equals(oldMethodBodyStr, newMethodBodyStr)) {
+                changeMethods.add(s);
+            }
+        });
+        return changeMethods;
     }
 
     private Map<String, MethodDeclaration> getAllMethodDeclaration(String projectRootPath, String path) throws FileNotFoundException {
