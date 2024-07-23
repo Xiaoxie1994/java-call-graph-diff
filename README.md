@@ -25,6 +25,9 @@ CG的Java实现方式。采用源码静态分析方式，提供静态调用关�
 ## Connect with Me
 - Email: [xiexiao064@gmail.com](mailto:xiexiao064@gmail.com)
 - WeChat: ShawnLFF
+- 公众号: 肖恩杂谈
+
+<img src="./picture/img.png" alt="公众号二维码" width="400">
 
 License
 ---
